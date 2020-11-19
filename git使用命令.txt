@@ -12,4 +12,6 @@ git  log --pretty=oneline 查看版本号
 git reset --hard HEAD^  回退到上一个版本
 git reset --hard HEAD~100 回退往上100个版本
 git reset --hard 1094a 回退到某个版本号
+git reset HEAD <file>     可以把暂存区的修改撤销掉（unstage），重新放回工作区
 git reflog  记录你的每一次命令
+git checkout -- readme.txt         意思就是，把readme.txt文件在工作区的修改全部撤销
