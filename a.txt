@@ -5,6 +5,6 @@ Git is free software.
 git init
 git add xxx
 git commit -m '说明'
-git status  查看当前修改状态
-git diff
+git status  告诉你有文件被修改过
+git diff   查看修改内容
 
