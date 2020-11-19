@@ -1,2 +1,10 @@
 Git is a distributed version control system.
 Git is free software.
+
+
+git init
+git add xxx
+git commit -m '说明'
+git status  查看当前修改状态
+git diff
+
