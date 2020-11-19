@@ -3,28 +3,50 @@ Git is free software.
 
 
 git init
-git add xxx
+git add xxx  或git add .
 git commit -m '说明'
 
 git status  告诉你有文件被修改过
 git diff   查看修改内容
+
 git log --pretty=oneline 查看版本号
 
 git reset --hard HEAD^  回退到上一个版本
 git reset --hard HEAD~100 回退往上100个版本
-git reset --hard 1094a 回退到某个版本号
-git reset HEAD <file>     可以把暂存区的修改撤销掉（unstage），重新放回工作区
+git reset --hard 1094a 根据查看的版本号回退到某个版本号
+git reset HEAD 文件名     可以把暂存区的修改撤销掉（unstage），重新放回工作区
 
 git reflog  记录你的每一次命令
 
 git rm  xxx     删掉，并且git commit：
 
-git checkout -- readme.txt         意思就是，把readme.txt文件在工作区的修改全部撤销，丢弃工作区的修改
-git checkout -- test.txt    也可以用做删除恢复
+git checkout -- readme.txt  意思就是，把readme.txt文件在工作区的修改全部撤销，丢弃工作区的修改
+git checkout -- test.txt    也可以用做删除恢复,从版本库恢复，但是本次修改魏提交的内容无法恢复
 
+把本地仓库与远程github仓库关联,
+使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，
+但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https。
+git remote add origin git@github.com:andyleisure/learngit.git/git remote add origin https://github.com/michaelliao/gitskills.git
+
+推送内容
 git push -u origin master 把本地库的所有内容推送到远程库上，实际上是把当前分支master推送到远程
-我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，
-在以后的推送或者拉取时就可以简化命令。
+我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，
+还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
 
 从现在起，只要本地作了提交，就可以通过命令：
-$ git push origin master
+git push origin master
+
+从0开发，先在远程库创建项目，然后大家克隆 
+git clone git@github.com:andyleisure/gitskills.git
+
+-----------分支操作--------------
+创建dev分支，然后切换到dev分支：相当于两条命令： git branch dev，git checkout dev
+git checkout -b dev
+
+git branch 查看当前分支
+
+
+
+
+
+
