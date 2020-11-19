@@ -45,6 +45,10 @@ git checkout -b dev
 
 git branch 查看当前分支
 
+git checkout master  切换回master分支
+
+
+
 
 
 
