@@ -2,28 +2,33 @@ Git is a distributed version control system.
 Git is free software.
 
 ===============================================git总结======================================
-git init
+git init 把当前目录变成Git可以管理的仓库
 git add xxx  或git add .
 git commit -m '说明'
 
 git status  告诉你有文件被修改过
 git diff   查看修改内容
 
-git log --pretty=oneline 查看版本号
+git log --pretty=oneline 查看版本号   
 
 git reset --hard HEAD^  回退到上一个版本
 git reset --hard HEAD~100 回退往上100个版本
 git reset --hard 1094a 根据查看的版本号回退到某个版本号
-git reset HEAD 文件名     可以把暂存区的修改撤销掉（unstage），重新放回工作区
 
-git reflog  记录你的每一次命令
+git reflog  查看你的每一次命令，一般用于回到未来的那个版本   
+git diff HEAD -- readme.txt 查看工作区和版本库里面最新版本的区别
+
+git checkout -- readme.txt  
+一是修改后还没有被放到暂存区，即直接丢弃工作区的修改
+二是已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态
+总之，就是让这个文件回到最近一次git commit或git add时的状态
+git reset HEAD 文件名     已经在暂存区的，可以把暂存区的修改撤销掉（unstage），重新放回工作区，然后可再丢弃工作区即可清理干净
 
 git rm  xxx     删掉，并且git commit：
-
-git checkout -- readme.txt  意思就是，把readme.txt文件在工作区的修改全部撤销，丢弃工作区的修改
 git checkout -- test.txt    也可以用做删除恢复,从版本库恢复，但是本次修改魏提交的内容无法恢复
 
-把本地仓库与远程github仓库关联,
+-------------------------------------远程仓库关联----------------------------------
+把本地仓库与远程github仓库关联,起别名
 使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，
 但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https。
 git remote add origin git@github.com:andyleisure/learngit.git/git remote add origin https://github.com/michaelliao/gitskills.git
@@ -46,7 +51,7 @@ git checkout -b dev
 
 git branch 查看当前分支
 
-。。在dev分支修改内容，并提交本地库。。。
+......在dev分支修改内容，并提交本地库......
 
 git checkout master  切换回master分支
 
@@ -59,8 +64,8 @@ git merge --no-ff -m "merge with no-ff" dev
 git branch -d dev
 
 因为创建、合并和删除分支非常快，所以Git鼓励你使用分支完成某个任务，合并后再删掉分支，这和直接在master分支上工作效果是一样的，但过程更安全。
-
-git log --graph --pretty=oneline --abbrev-commit 看到分支的合并情况
+看到分支的合并情况
+git log --graph --pretty=oneline --abbrev-commit 
 
 git stash 把当前工作现场“暂存”起来，等以后恢复现场后继续工作，用git status查看工作区 是干净的
 
