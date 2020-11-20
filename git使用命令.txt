@@ -1,6 +1,10 @@
 Git is a distributed version control system.
 Git is free software.
 
+安装后配置：
+git config --global user.name "Your Name"
+git config --global user.email "email@example.com"
+git config --global color.ui true
 ===============================================git总结======================================
 git init 把当前目录变成Git可以管理的仓库
 git add xxx  或git add .
@@ -67,6 +71,8 @@ git branch -d dev
 看到分支的合并情况
 git log --graph --pretty=oneline --abbrev-commit 
 
+
+修复bug时，创建bug分支
 git stash 把当前工作现场“暂存”起来，等以后恢复现场后继续工作，用git status查看工作区 是干净的
 
 修复完其他bug后，继续在dev分支干活
@@ -84,15 +90,52 @@ $ git branch
 $ git cherry-pick 4c805e2
 在master分支上修复的bug，想要合并到当前dev分支，可以用git cherry-pick <commit>命令，把bug提交的修改“复制”到当前分支，避免重复劳动
 
+----------------------------多人协作-----------------------
+git remote -v 要查看远程库的信息
+git push origin dev或git push origin master 把本地库dev分支上的所有本地提交推送到远程库
+并不是一定要把本地分支往远程推送
+master分支是主分支，因此要时刻与远程同步；
+dev分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；
+bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；
+feature分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。
 
+其他小伙伴从远程库clone时，默认情况下，你的小伙伴只能看到本地的master分支
+创建远程origin的dev分支到本地，在本地开发dev分支
+git checkout -b dev origin/dev
+git push origin dev 提交本地dev分支到远程dev分支
+如果当前自己也在改分支上push，就会冲突,需要先git pull
+git branch --set-upstream-to=origin/dev dev  指定本地dev分支与远程origin/dev分支的链接
+
+多人协作的工作模式通常是这样：
+首先，可以试图用git push origin <branch-name>推送自己的修改；
+如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；
+如果合并有冲突，则解决冲突，并在本地提交；
+没有冲突或者解决掉冲突后，再用git push origin <branch-name>推送就能成功！
+如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream-to <branch-name> origin/<branch-name>。
+这就是多人协作的工作模式，一旦熟悉了，就非常简单。
+
+-------------------------------------打标签-------------------------------------------------
+git checkout master  
 git tag v1.0 打标签
+git tag v0.9 f52c633  对应的commit id是f52c633打标签
+git tag -a v0.1 -m "version 0.1 released" 1094adb
+git tag查看   git show v0.9
+标签总是和某个commit挂钩。如果这个commit既出现在master分支，又出现在dev分支，那么在这两个分支上都可以看到这个标签
+因为创建的标签都只存储在本地，不会自动推送到远程。所以，打错的标签可以在本地安全删除。
 git tag -d v0.1 删
 git push origin v1.0 要推送某个标签到远程
 git push origin --tags 一次性推送全部尚未推送到远程的本地标签
-
 如果标签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：
 git tag -d v0.9
 然后，从远程删除。删除命令也是push，但是格式如下：
 git push origin :refs/tags/v0.9
 
+----------------
+能不能既关联GitHub，又关联Gitee呢
+git remote rm origin 先删除已关联的名为origin的远程库
+git remote add github git@github.com:andyleisre/learngit.git 关联GitHub的远程库
+git remote add gitee  git@gitee.com:andyleisre/learngit.git再关联Gitee的远程库
+git remote -v 查看远程库信息
+git push github master 推送
+git push gitee master
 
