@@ -130,7 +130,7 @@ git tag -d v0.9
 然后，从远程删除。删除命令也是push，但是格式如下：
 git push origin :refs/tags/v0.9
 
-----------------
+-------------------------------
 能不能既关联GitHub，又关联Gitee呢
 git remote rm origin 先删除已关联的名为origin的远程库
 git remote add github git@github.com:andyleisre/learngit.git 关联GitHub的远程库
