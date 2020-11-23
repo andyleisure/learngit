@@ -1,4 +1,4 @@
-Git is a distributed version control system.
+﻿Git is a distributed version control system.
 Git is free software.
 
 安装后配置：
@@ -20,7 +20,7 @@ git reset --hard HEAD~100 回退往上100个版本
 git reset --hard 1094a 根据查看的版本号回退到某个版本号
 
 git reflog  查看你的每一次命令，一般用于回到未来的那个版本   
-git diff HEAD -- readme.txt 查看工作区和版本库里面最新版本的区别
+git diff HEAD -- readme.txt 查看工作区和版本库里面最新版本的区别 
 
 git checkout -- readme.txt  
 一是修改后还没有被放到暂存区，即直接丢弃工作区的修改
