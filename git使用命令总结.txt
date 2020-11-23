@@ -8,7 +8,7 @@ git config --global color.ui true
 ===============================================git总结======================================
 git init 把当前目录变成Git可以管理的仓库
 git add xxx  或git add .
-git commit -m '说明'
+git commit -m '说明' 
 
 git status  告诉你有文件被修改过    
 git diff   查看修改内容
